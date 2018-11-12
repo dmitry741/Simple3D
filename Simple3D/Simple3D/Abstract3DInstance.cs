@@ -12,6 +12,8 @@ namespace Simple3D
 
         public List<Point3D> Points => _list;
 
+        public  abstract List<Edge> Render();
+
         public string Name { get; set; } = string.Empty;
 
         public override string ToString()

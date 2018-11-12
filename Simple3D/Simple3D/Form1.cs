@@ -38,6 +38,16 @@ namespace Simple3D
             pictureBox1.Image = _bitmap;
         }
 
+        void Render3DInstance(Abstract3DInstance instance, Graphics g, Pen pen)
+        {
+            List<Edge> edges = instance.Render();
+
+            foreach(Edge e in edges)
+            {
+                g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+            }
+        }
+
         bool CreateBackground()
         {
             if (pictureBox1.Width < 1 || pictureBox1.Height < 1)

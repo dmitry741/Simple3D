@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,11 @@ namespace Simple3D
             X = x;
             Y = y;
             Z = z;
+        }
+         
+        public PointF ToPointF()
+        {
+            return new PointF(Convert.ToSingle(X), Convert.ToSingle(Y));
         }
     }
 }
