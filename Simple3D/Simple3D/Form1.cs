@@ -22,6 +22,7 @@ namespace Simple3D
         Bitmap _bitmap = null;
         Abstract3DInstance _instance3D = null;
         PointF _startPoint = PointF.Empty;
+        double _scaleFactor = 1;
 
         #endregion
 
@@ -106,6 +107,8 @@ namespace Simple3D
 
             _instance3D = Factory3Dinstance.GetInstance(index);
             FirstTransformation(_instance3D, pictureBox1.Width / 2, pictureBox1.Height / 2);
+            _scaleFactor = 1;
+            trackBar1.Value = (trackBar1.Minimum + trackBar1.Maximum) / 2;
 
             Render();
         }
@@ -134,6 +137,24 @@ namespace Simple3D
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _startPoint = new PointF(e.X, e.Y);
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            if (_instance3D == null)
+                return;
+
+            const double c_min = 0.5;
+            const double c_max = 2;
+
+            double scaleFactor = (c_max - c_min) / Convert.ToDouble(trackBar1.Maximum - trackBar1.Minimum) * Convert.ToDouble(trackBar1.Value - trackBar1.Minimum) + c_min;
+
+            TransformEngine.Scale(_instance3D, 1 / _scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
+            TransformEngine.Scale(_instance3D, scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
+
+            _scaleFactor = scaleFactor;
+
+            Render();
         }
     }
 }
