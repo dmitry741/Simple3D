@@ -18,10 +18,10 @@ namespace Simple3D
         {
             double s = Math.Sqrt(3);
 
-            _list.Add(new Point3D(-0.5, -s / 6, -s / 6));
-            _list.Add(new Point3D(0, s / 2 - s / 6, -s / 6));
-            _list.Add(new Point3D(0.5, -s / 6, - s / 6));
-            _list.Add(new Point3D(0, 0, 1 / s - s / 6));
+            _list.Add(new Point3D(- 0.5, -s / 4, -Math.Sqrt(6) / 6));
+            _list.Add(new Point3D(0.5, -s / 4, -Math.Sqrt(6) / 6));
+            _list.Add(new Point3D(0, s / 4, -Math.Sqrt(6) / 6));
+            _list.Add(new Point3D(0, -s / 12, Math.Sqrt(6) / 6));
 
             Name = "Тетраэдр";
         }
