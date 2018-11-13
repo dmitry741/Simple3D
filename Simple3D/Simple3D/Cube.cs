@@ -18,15 +18,15 @@ namespace Simple3D
         {
             double s = Math.Sqrt(2) / 2;
 
-            _list.Add(new Point3D(0, s, s / 2));
-            _list.Add(new Point3D(s, 0, s / 2));
-            _list.Add(new Point3D(0, -s, s / 2));
-            _list.Add(new Point3D(-s, 0, s / 2));
+            _list.Add(new Point3D(0, s, 0.5));
+            _list.Add(new Point3D(s, 0, 0.5));
+            _list.Add(new Point3D(0, -s, 0.5));
+            _list.Add(new Point3D(-s, 0, 0.5));
 
-            _list.Add(new Point3D(0, s, -s / 2));
-            _list.Add(new Point3D(s, 0, -s / 2));
-            _list.Add(new Point3D(0, -s, -s / 2));
-            _list.Add(new Point3D(-s, 0, -s / 2));
+            _list.Add(new Point3D(0, s, -0.5));
+            _list.Add(new Point3D(s, 0, -0.5));
+            _list.Add(new Point3D(0, -s, -0.5));
+            _list.Add(new Point3D(-s, 0, -0.5));
 
             Name = "Куб";
         }

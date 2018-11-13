@@ -21,6 +21,7 @@ namespace Simple3D
 
         Bitmap _bitmap = null;
         Abstract3DInstance _instance3D = null;
+        PointF _startPoint = PointF.Empty;
 
         #endregion
 
@@ -50,6 +51,15 @@ namespace Simple3D
             {
                 g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
             }
+        }
+
+        void FirstTransformation(Abstract3DInstance instance, double Xc, double Yc)
+        {
+            if (instance == null)
+                return;
+
+            TransformEngine.Scale(instance, 140, 0, 0, 0);
+            TransformEngine.Translate(instance, Xc, Yc, 0);
         }
 
         bool CreateBackground()
@@ -95,6 +105,35 @@ namespace Simple3D
                 return;
 
             _instance3D = Factory3Dinstance.GetInstance(index);
+            FirstTransformation(_instance3D, pictureBox1.Width / 2, pictureBox1.Height / 2);
+
+            Render();
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_instance3D == null)
+                return;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                PointF point = new PointF(e.X, e.Y);
+
+                double angleXZ = (point.X - _startPoint.X) / 4;
+                double angleYZ = (point.Y - _startPoint.Y) / 4;
+
+                TransformEngine.RotateXZ(_instance3D, angleXZ, pictureBox1.Width / 2, 0);
+                TransformEngine.RotateYZ(_instance3D, angleYZ, pictureBox1.Height / 2, 0);
+
+                Render();
+
+                _startPoint = point;
+            }          
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            _startPoint = new PointF(e.X, e.Y);
         }
     }
 }
