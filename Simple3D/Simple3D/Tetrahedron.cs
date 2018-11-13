@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Simple3D
 {
     /// <summary>
-    /// Тетраэдр
+    /// Тетраэдр.
     /// </summary>
     class Tetrahedron : Abstract3DInstance
     {

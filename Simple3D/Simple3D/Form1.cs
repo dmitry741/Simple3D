@@ -36,7 +36,8 @@ namespace Simple3D
             Graphics g = Graphics.FromImage(_bitmap);
             g.Clear(Color.White);
 
-            Render3DInstance(_instance3D, g, Pens.Black);
+            // отрисовываем 3D объект.
+            Render3DInstance(_instance3D, g, new Pen(Color.Black, 2f));
 
             pictureBox1.Image = _bitmap;
         }
@@ -61,6 +62,8 @@ namespace Simple3D
 
             TransformEngine.Scale(instance, 140, 0, 0, 0);
             TransformEngine.Translate(instance, Xc, Yc, 0);
+
+            _scaleFactor = 1;
         }
 
         bool CreateBackground()
@@ -107,7 +110,6 @@ namespace Simple3D
 
             _instance3D = Factory3Dinstance.GetInstance(index);
             FirstTransformation(_instance3D, pictureBox1.Width / 2, pictureBox1.Height / 2);
-            _scaleFactor = 1;
             trackBar1.Value = (trackBar1.Minimum + trackBar1.Maximum) / 2;
 
             Render();
@@ -147,12 +149,10 @@ namespace Simple3D
             const double c_min = 0.5;
             const double c_max = 2;
 
-            double scaleFactor = (c_max - c_min) / Convert.ToDouble(trackBar1.Maximum - trackBar1.Minimum) * Convert.ToDouble(trackBar1.Value - trackBar1.Minimum) + c_min;
+            double sf = (c_max - c_min) / Convert.ToDouble(trackBar1.Maximum - trackBar1.Minimum) * Convert.ToDouble(trackBar1.Value - trackBar1.Minimum) + c_min;
 
-            TransformEngine.Scale(_instance3D, 1 / _scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
-            TransformEngine.Scale(_instance3D, scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
-
-            _scaleFactor = scaleFactor;
+            TransformEngine.Scale(_instance3D, sf / _scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
+            _scaleFactor = sf;
 
             Render();
         }

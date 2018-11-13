@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Simple3D
 {
+    /// <summary>
+    /// Класс ребра 3D объекта.
+    /// </summary>
     class Edge
     {
         Point3D _point1 = null;

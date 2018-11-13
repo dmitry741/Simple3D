@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Simple3D
 {
+    /// <summary>
+    /// Класс точки заданной в 3-х мерном пространтсве.
+    /// </summary>
     class Point3D
     {
         public double X { get; set; }
@@ -25,6 +28,10 @@ namespace Simple3D
             Z = z;
         }
          
+        /// <summary>
+        /// Конвертация в PointF для удобства отрисовки.
+        /// </summary>
+        /// <returns></returns>
         public PointF ToPointF()
         {
             return new PointF(Convert.ToSingle(X), Convert.ToSingle(Y));

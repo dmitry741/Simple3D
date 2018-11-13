@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Simple3D
 {
     /// <summary>
-    /// Куб
+    /// Куб.
     /// </summary>
     class Cube : Abstract3DInstance
     {
