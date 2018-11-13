@@ -20,6 +20,7 @@ namespace Simple3D
         #region memebers
 
         Bitmap _bitmap = null;
+        Abstract3DInstance _instance3D = null;
 
         #endregion
 
@@ -33,13 +34,16 @@ namespace Simple3D
             Graphics g = Graphics.FromImage(_bitmap);
             g.Clear(Color.White);
 
-            // TODO:
+            Render3DInstance(_instance3D, g, Pens.Black);
 
             pictureBox1.Image = _bitmap;
         }
 
         void Render3DInstance(Abstract3DInstance instance, Graphics g, Pen pen)
         {
+            if (instance == null)
+                return;
+
             List<Edge> edges = instance.Render();
 
             foreach(Edge e in edges)
@@ -67,6 +71,10 @@ namespace Simple3D
         {
             pictureBox1.BackColor = Color.White;
             CreateBackground();
+
+            comboBox1.Items.Add("Куб");
+            comboBox1.Items.Add("Тетераэдр");
+            comboBox1.SelectedIndex = 0;
         }
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
@@ -77,6 +85,16 @@ namespace Simple3D
         private void frmMain_Paint(object sender, PaintEventArgs e)
         {
             Render();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBox1.SelectedIndex;
+
+            if (index < 0)
+                return;
+
+            _instance3D = Factory3Dinstance.GetInstance(index);
         }
     }
 }

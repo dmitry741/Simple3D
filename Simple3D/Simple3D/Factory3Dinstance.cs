@@ -8,7 +8,7 @@ namespace Simple3D
 {
     class Factory3Dinstance
     {
-        static Abstract3DInstance GetInstance(int id)
+        static public Abstract3DInstance GetInstance(int id)
         {
             Abstract3DInstance instance = null;
 
