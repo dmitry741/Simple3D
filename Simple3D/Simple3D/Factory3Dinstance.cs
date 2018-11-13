@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Simple3D
 {
+    /// <summary>
+    /// Фабрика 3D объектов.
+    /// </summary>
     class Factory3Dinstance
     {
         static public Abstract3DInstance GetInstance(int id)

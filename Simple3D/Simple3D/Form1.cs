@@ -124,8 +124,8 @@ namespace Simple3D
             {
                 PointF point = new PointF(e.X, e.Y);
 
-                double angleXZ = (point.X - _startPoint.X) / 16;
-                double angleYZ = (point.Y - _startPoint.Y) / 16;
+                double angleXZ = (point.X - _startPoint.X) / 48;
+                double angleYZ = (point.Y - _startPoint.Y) / 48;
 
                 TransformEngine.RotateXZ(_instance3D, angleXZ, pictureBox1.Width / 2, 0);
                 TransformEngine.RotateYZ(_instance3D, angleYZ, pictureBox1.Height / 2, 0);
