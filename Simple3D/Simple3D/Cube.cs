@@ -31,8 +31,6 @@ namespace Simple3D
             Name = "Куб";
         }
 
-        bool PredicateVisible(double z) => z >= 0;
-
         public override List<Edge> Render()
         {
             List<Edge> edges = new List<Edge>

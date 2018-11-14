@@ -13,6 +13,8 @@ namespace Simple3D
     {
         protected List<Point3D> _list = new List<Point3D>();
 
+        protected bool PredicateVisible(double z) => z >= 0;
+
         /// <summary>
         /// Свойство возвращает список точек.
         /// </summary>
