@@ -11,6 +11,11 @@ namespace Simple3D
     /// </summary>
     class Factory3Dinstance
     {
+        /// <summary>
+        /// Получение 3D объекта по id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Экземпляр класса Abstract3DInstance.</returns>
         static public Abstract3DInstance GetInstance(int id)
         {
             Abstract3DInstance instance = null;

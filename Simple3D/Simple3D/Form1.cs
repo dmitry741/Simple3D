@@ -37,22 +37,39 @@ namespace Simple3D
             g.Clear(Color.White);
 
             // отрисовываем 3D объект.
-            Render3DInstance(_instance3D, g);
+            Render3DInstance(_instance3D, g, comboBox2.SelectedIndex);
 
             pictureBox1.Image = _bitmap;
         }
 
-        void Render3DInstance(Abstract3DInstance instance, Graphics g)
+        void Render3DInstance(Abstract3DInstance instance, Graphics g, int mode)
         {
             if (instance == null)
                 return;
 
             Pen pen = new Pen(Color.Black, 2f);
-            List<Edge> edges = instance.Render();
-
-            foreach(Edge e in edges.Where(x => x.Visible))
+            Pen dashPen = new Pen(Color.Black, 2f)
             {
-                g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+                DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
+            };
+            IEnumerable<Edge> edges = instance.Render();
+
+            foreach(Edge e in edges)
+            {
+                switch (mode)
+                {
+                    case 0:
+                        g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+                        break;
+                    case 1:
+                        if (e.Visible)
+                            g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+                        break;
+                    case 2:
+                        g.DrawLine((e.Visible) ? pen : dashPen, e.point1.ToPointF(), e.point2.ToPointF());
+                        break;
+                }
+                
             }
         }
 
@@ -90,6 +107,11 @@ namespace Simple3D
             comboBox1.Items.Add("Куб");
             comboBox1.Items.Add("Тетраэдр");
             comboBox1.SelectedIndex = 0;
+
+            comboBox2.Items.Add("Все ребра");
+            comboBox2.Items.Add("Только видимые");
+            comboBox2.Items.Add("Невидимые пунктиром");
+            comboBox2.SelectedIndex = 0;
         }
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)

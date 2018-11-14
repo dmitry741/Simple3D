@@ -31,7 +31,11 @@ namespace Simple3D
             Name = "Куб";
         }
 
-        public override List<Edge> Render()
+        /// <summary>
+        /// Метод возвращает список ребер для отображения.
+        /// </summary>
+        /// <returns></returns>
+        public override IEnumerable<Edge> Render()
         {
             List<Edge> edges = new List<Edge>
             {

@@ -26,7 +26,7 @@ namespace Simple3D
             Name = "Тетраэдр";
         }
 
-        public override List<Edge> Render()
+        public override IEnumerable<Edge> Render()
         {
             List<Edge> edges = new List<Edge>
             {
@@ -38,22 +38,17 @@ namespace Simple3D
                 new Edge(_list[2], _list[3])
             };
 
-            Plane plane1, plane2;
-            int index = 0;
-
-            plane1 = new Plane(_list[1], _list[0], _list[2]);
+            Plane plane1, plane2;            
 
             for (int i = 0; i < 3; i++)
             {
+                plane1 = new Plane(_list[1], _list[0], _list[2]);
                 plane2 = new Plane(_list[i],_list[(i + 1) % 3], _list[3]);
-                edges[index++].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
-            }
+                edges[i].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
 
-            for (int i = 0; i < 3; i++)
-            {
                 plane1 = new Plane(_list[i], _list[3], _list[(i + 2) % 3]);
                 plane2 = new Plane(_list[3], _list[i], _list[(i + 1) % 3]);
-                edges[index++].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+                edges[i + 3].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
             }
 
             return edges;

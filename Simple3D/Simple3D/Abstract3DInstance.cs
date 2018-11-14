@@ -13,6 +13,11 @@ namespace Simple3D
     {
         protected List<Point3D> _list = new List<Point3D>();
 
+        /// <summary>
+        /// Метод необходим для определения видимости грани.
+        /// </summary>
+        /// <param name="z">Z координта векторного произведния.</param>
+        /// <returns>Видимость грани.</returns>
         protected bool PredicateVisible(double z) => z >= 0;
 
         /// <summary>
@@ -24,7 +29,7 @@ namespace Simple3D
         /// Метод возвращает список ребер для отрисовки.
         /// </summary>
         /// <returns></returns>
-        public  abstract List<Edge> Render();
+        public  abstract IEnumerable<Edge> Render();
 
         /// <summary>
         /// Имя объекта.
