@@ -18,11 +18,12 @@ namespace Simple3D
         {
             _point1 = point1;
             _point2 = point2;
+            Visible = true;
         }
 
         public Point3D point1 => _point1;
         public Point3D point2 => _point2;
 
-        public bool Visible => true;
+        public bool Visible { get; set; }
     }
 }

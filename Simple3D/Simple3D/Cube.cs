@@ -31,9 +31,11 @@ namespace Simple3D
             Name = "Куб";
         }
 
+        bool PredicateVisible(double z) => z >= 0;
+
         public override List<Edge> Render()
         {
-            List<Edge> list = new List<Edge>
+            List<Edge> edges = new List<Edge>
             {
                 new Edge(_list[0], _list[1]),
                 new Edge(_list[1], _list[2]),
@@ -51,7 +53,24 @@ namespace Simple3D
                 new Edge(_list[3], _list[7])
             };
 
-            return list;
+            Plane plane1, plane2;
+
+            for (int i = 0; i < 4; i++)
+            {
+                plane1 = new Plane(_list[i], _list[(i + 1) % 4], _list[(i + 2) % 4]);
+                plane2 = new Plane(_list[(i + 1) % 4], _list[i], _list[(i + 5) % 4 + 4]);
+                edges[i].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+
+                plane1 = new Plane(_list[(i + 5) % 4 + 4], _list[(i + 4) % 4 + 4], _list[(i + 6) % 4 + 4]);
+                plane2 = new Plane(_list[(i + 4) % 4 + 4], _list[(i + 5) % 4 + 4], _list[i]);
+                edges[i + 4].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+
+                plane1 = new Plane(_list[i], _list[i + 4], _list[(i + 5) % 8]);
+                plane2 = new Plane(_list[i + 4], _list[i], _list[(i + 7) % 8]);
+                edges[i + 8].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+            }
+
+            return edges;
         }
     }
 }

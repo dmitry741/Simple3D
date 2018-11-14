@@ -37,19 +37,20 @@ namespace Simple3D
             g.Clear(Color.White);
 
             // отрисовываем 3D объект.
-            Render3DInstance(_instance3D, g, new Pen(Color.Black, 2f));
+            Render3DInstance(_instance3D, g);
 
             pictureBox1.Image = _bitmap;
         }
 
-        void Render3DInstance(Abstract3DInstance instance, Graphics g, Pen pen)
+        void Render3DInstance(Abstract3DInstance instance, Graphics g)
         {
             if (instance == null)
                 return;
 
+            Pen pen = new Pen(Color.Black, 2f);
             List<Edge> edges = instance.Render();
 
-            foreach(Edge e in edges)
+            foreach(Edge e in edges.Where(x => x.Visible))
             {
                 g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
             }
@@ -87,7 +88,7 @@ namespace Simple3D
             CreateBackground();
 
             comboBox1.Items.Add("Куб");
-            comboBox1.Items.Add("Тетераэдр");
+            comboBox1.Items.Add("Тетраэдр");
             comboBox1.SelectedIndex = 0;
         }
 
@@ -124,8 +125,8 @@ namespace Simple3D
             {
                 PointF point = new PointF(e.X, e.Y);
 
-                double angleXZ = (point.X - _startPoint.X) / 48;
-                double angleYZ = (point.Y - _startPoint.Y) / 48;
+                double angleXZ = (point.X - _startPoint.X) / 52;
+                double angleYZ = (point.Y - _startPoint.Y) / 52;
 
                 TransformEngine.RotateXZ(_instance3D, angleXZ, pictureBox1.Width / 2, 0);
                 TransformEngine.RotateYZ(_instance3D, angleYZ, pictureBox1.Height / 2, 0);
