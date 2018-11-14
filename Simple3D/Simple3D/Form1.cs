@@ -47,14 +47,21 @@ namespace Simple3D
             if (instance == null)
                 return;
 
-            Pen pen = new Pen(Color.Black, 2f);
-            Pen dashPen = new Pen(Color.Black, 2f)
+            Pen pen = new Pen(Color.Black, 3f);
+            Pen dashPen = new Pen(Color.Black, 3f)
             {
                 DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
             };
             IEnumerable<Edge> edges = instance.Render();
 
-            foreach(Edge e in edges)
+            //Point3D ceneter = new Point3D(pictureBox1.Width / 2, pictureBox1.Height / 2, -600);
+
+            //for (int i = 0; i < _instance3D.Points.Count(); i++)
+            //{
+            //    _instance3D.Points[i] = PerspectiveTransform.GetVal(_instance3D.Points[i], ceneter);
+            //}
+
+            foreach (Edge e in edges)
             {
                 switch (mode)
                 {
@@ -63,13 +70,14 @@ namespace Simple3D
                         break;
                     case 1:
                         if (e.Visible)
+                        {
                             g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+                        }
                         break;
                     case 2:
                         g.DrawLine((e.Visible) ? pen : dashPen, e.point1.ToPointF(), e.point2.ToPointF());
                         break;
-                }
-                
+                }                
             }
         }
 
