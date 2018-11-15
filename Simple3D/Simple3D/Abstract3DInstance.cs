@@ -31,6 +31,8 @@ namespace Simple3D
         /// <returns></returns>
         public  abstract IEnumerable<Edge> Render();
 
+        public abstract IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center);
+
         /// <summary>
         /// Имя объекта.
         /// </summary>

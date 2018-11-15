@@ -52,9 +52,11 @@ namespace Simple3D
             {
                 DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
             };
-            IEnumerable<Edge> edges = instance.Render();
 
-            //Point3D ceneter = new Point3D(pictureBox1.Width / 2, pictureBox1.Height / 2, -600);
+            //IEnumerable<Edge> edges = instance.Render();
+
+            Point3D ceneter = new Point3D(pictureBox1.Width / 2, pictureBox1.Height / 2, -600);
+            IEnumerable<Edge> edges = instance.Render(new PerspectiveTransform(), ceneter);
 
             //for (int i = 0; i < _instance3D.Points.Count(); i++)
             //{
