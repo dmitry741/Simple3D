@@ -37,12 +37,13 @@ namespace Simple3D
             g.Clear(Color.White);
 
             // отрисовываем 3D объект.
-            Render3DInstance(_instance3D, g, comboBox2.SelectedIndex);
+            Point3D center = new Point3D(pictureBox1.Width / 2, pictureBox1.Height / 2, -600);
+            Render3DInstance(_instance3D, g, center, comboBox2.SelectedIndex);
 
             pictureBox1.Image = _bitmap;
         }
 
-        void Render3DInstance(Abstract3DInstance instance, Graphics g, int mode)
+        void Render3DInstance(Abstract3DInstance instance, Graphics g, Point3D centerPerspective, int mode)
         {
             if (instance == null)
                 return;
@@ -53,15 +54,9 @@ namespace Simple3D
                 DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
             };
 
-            //IEnumerable<Edge> edges = instance.Render();
-
-            Point3D ceneter = new Point3D(pictureBox1.Width / 2, pictureBox1.Height / 2, -600);
-            IEnumerable<Edge> edges = instance.Render(new PerspectiveTransform(), ceneter);
-
-            //for (int i = 0; i < _instance3D.Points.Count(); i++)
-            //{
-            //    _instance3D.Points[i] = PerspectiveTransform.GetVal(_instance3D.Points[i], ceneter);
-            //}
+            IEnumerable<Edge> edges = (checkBox1.Checked) ? 
+                instance.Render(new PerspectiveTransform(), centerPerspective) :
+                edges = instance.Render();
 
             foreach (Edge e in edges)
             {
@@ -187,6 +182,11 @@ namespace Simple3D
             TransformEngine.Scale(_instance3D, sf / _scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
             _scaleFactor = sf;
 
+            Render();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
             Render();
         }
     }
