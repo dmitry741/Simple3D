@@ -31,7 +31,15 @@ namespace Simple3D
         /// <returns></returns>
         public  abstract IEnumerable<Edge> Render();
 
-        public abstract IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center);
+        public IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center)
+        {
+            List<Point3D> savedPoints = new List<Point3D>(_list);
+            _list = Array.ConvertAll(_list.ToArray(), x => ipt.Transform(x, center)).ToList();
+            IEnumerable<Edge> edges = Render();
+            _list = savedPoints;
+
+            return edges;
+        }
 
         /// <summary>
         /// Имя объекта.

@@ -53,16 +53,5 @@ namespace Simple3D
 
             return edges;
         }
-
-        public override IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center)
-        {
-            List<Point3D> transformPoints = Array.ConvertAll(_list.ToArray(), x => ipt.Transform(x, center)).ToList();
-            Tetrahedron t = new Tetrahedron();
-
-            t._list.Clear();
-            t._list = transformPoints;
-
-            return t.Render();
-        }
     }
 }
