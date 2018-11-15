@@ -63,16 +63,16 @@ namespace Simple3D
                 switch (mode)
                 {
                     case 0:
-                        g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+                        g.DrawLine(pen, e.Point1.ToPointF(), e.Point2.ToPointF());
                         break;
                     case 1:
                         if (e.Visible)
                         {
-                            g.DrawLine(pen, e.point1.ToPointF(), e.point2.ToPointF());
+                            g.DrawLine(pen, e.Point1.ToPointF(), e.Point2.ToPointF());
                         }
                         break;
                     case 2:
-                        g.DrawLine((e.Visible) ? pen : dashPen, e.point1.ToPointF(), e.point2.ToPointF());
+                        g.DrawLine((e.Visible) ? pen : dashPen, e.Point1.ToPointF(), e.Point2.ToPointF());
                         break;
                 }                
             }

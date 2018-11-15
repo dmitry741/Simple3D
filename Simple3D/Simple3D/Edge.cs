@@ -21,8 +21,8 @@ namespace Simple3D
             Visible = true;
         }
 
-        public Point3D point1 => _point1;
-        public Point3D point2 => _point2;
+        public Point3D Point1 => _point1;
+        public Point3D Point2 => _point2;
 
         public bool Visible { get; set; }
     }

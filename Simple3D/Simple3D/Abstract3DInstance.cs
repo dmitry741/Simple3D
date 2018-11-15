@@ -28,9 +28,15 @@ namespace Simple3D
         /// <summary>
         /// Метод возвращает список ребер для отрисовки.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Коллекция ребер.</returns>
         public  abstract IEnumerable<Edge> Render();
 
+        /// <summary>
+        /// Метод возвращает список ребер для отрисовки с учетом перспективных преобразований.
+        /// </summary>
+        /// <param name="ipt">Класс котрый выполняет перспектиные преобразования.</param>
+        /// <param name="center">Точка перспективы.</param>
+        /// <returns>Коллекция ребер.</returns>
         public IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center)
         {
             List<Point3D> savedPoints = new List<Point3D>(_list);
