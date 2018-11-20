@@ -111,6 +111,7 @@ namespace Simple3D
 
             comboBox1.Items.Add("Куб");
             comboBox1.Items.Add("Тетраэдр");
+            comboBox1.Items.Add("Октаэдр");
             comboBox1.SelectedIndex = 0;
 
             comboBox2.Items.Add("Все ребра");

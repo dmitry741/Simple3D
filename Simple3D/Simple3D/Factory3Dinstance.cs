@@ -28,6 +28,9 @@ namespace Simple3D
                 case 1:
                     instance = new Tetrahedron();
                     break;
+                case 2:
+                    instance = new Octahedron();
+                    break;
             }
 
             return instance;
