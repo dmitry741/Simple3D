@@ -152,9 +152,10 @@ namespace Simple3D
             if (e.Button == MouseButtons.Left)
             {
                 PointF point = new PointF(e.X, e.Y);
+                const double divider = 64;
 
-                double angleXZ = (point.X - _startPoint.X) / 64;
-                double angleYZ = (point.Y - _startPoint.Y) / 64;
+                double angleXZ = (point.X - _startPoint.X) / divider;
+                double angleYZ = (point.Y - _startPoint.Y) / divider;
 
                 TransformEngine.RotateXZ(_instance3D, angleXZ, pictureBox1.Width / 2, 0);
                 TransformEngine.RotateYZ(_instance3D, angleYZ, pictureBox1.Height / 2, 0);

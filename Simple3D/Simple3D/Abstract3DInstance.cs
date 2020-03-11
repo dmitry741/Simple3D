@@ -34,7 +34,7 @@ namespace Simple3D
         /// <summary>
         /// Метод возвращает список ребер для отрисовки с учетом перспективных преобразований.
         /// </summary>
-        /// <param name="ipt">Класс котрый выполняет перспектиные преобразования.</param>
+        /// <param name="ipt">Класс который выполняет перспектиные преобразования.</param>
         /// <param name="center">Точка перспективы.</param>
         /// <returns>Коллекция ребер.</returns>
         public IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center)
