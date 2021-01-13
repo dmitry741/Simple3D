@@ -11,7 +11,7 @@ namespace Simple3D
     /// </summary>
     class Plane
     {
-        Point3D _point1, _point2, _point3;
+        readonly Point3D _point1, _point2, _point3;
 
         public Plane(Point3D point1, Point3D point2, Point3D point3)
         {

@@ -55,15 +55,15 @@ namespace Simple3D
             {
                 plane1 = new Plane(_list[(i + 1) % 4], _list[i], _list[4]);
                 plane2 = new Plane(_list[i], _list[(i + 1) % 4], _list[5]);
-                edges[i].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+                edges[i].Visible = DetectVisibility(plane1.Z) || DetectVisibility(plane2.Z);
 
                 plane1 = new Plane(_list[i], _list[4], _list[(i + 1) % 4]);
                 plane2 = new Plane(_list[4], _list[i], _list[(i + 3) % 4]);
-                edges[i + 4].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+                edges[i + 4].Visible = DetectVisibility(plane1.Z) || DetectVisibility(plane2.Z);
 
                 plane1 = new Plane(_list[5], _list[i], _list[(i + 1) % 4]);
                 plane2 = new Plane(_list[i], _list[5], _list[(i + 3) % 4]);
-                edges[i + 8].Visible = PredicateVisible(plane1.Z) || PredicateVisible(plane2.Z);
+                edges[i + 8].Visible = DetectVisibility(plane1.Z) || DetectVisibility(plane2.Z);
             }
 
             return edges;

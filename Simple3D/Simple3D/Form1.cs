@@ -54,9 +54,9 @@ namespace Simple3D
                 DashStyle = System.Drawing.Drawing2D.DashStyle.Dash
             };
 
-            IEnumerable<Edge> edges = (checkBox1.Checked) ? 
+            IEnumerable<Edge> edges = checkBox1.Checked ? 
                 instance.Render(new PerspectiveTransform(), centerPerspective) :
-                edges = instance.Render();
+                instance.Render();
 
             foreach (Edge e in edges)
             {
@@ -72,7 +72,7 @@ namespace Simple3D
                         }
                         break;
                     case 2:
-                        g.DrawLine((e.Visible) ? pen : dashPen, e.Point1.ToPointF(), e.Point2.ToPointF());
+                        g.DrawLine(e.Visible ? pen : dashPen, e.Point1.ToPointF(), e.Point2.ToPointF());
                         break;
                 }                
             }
@@ -118,11 +118,6 @@ namespace Simple3D
             comboBox2.Items.Add("Только видимые");
             comboBox2.Items.Add("Невидимые пунктиром");
             comboBox2.SelectedIndex = 0;
-        }
-
-        private void pictureBox1_SizeChanged(object sender, EventArgs e)
-        {
-            CreateBackground();
         }
 
         private void frmMain_Paint(object sender, PaintEventArgs e)
@@ -176,10 +171,10 @@ namespace Simple3D
             if (_instance3D == null)
                 return;
 
-            const double c_min = 0.5;
-            const double c_max = 2;
+            const double cMin = 0.5;
+            const double cMax = 2;
 
-            double sf = (c_max - c_min) / Convert.ToDouble(trackBar1.Maximum - trackBar1.Minimum) * Convert.ToDouble(trackBar1.Value - trackBar1.Minimum) + c_min;
+            double sf = (cMax - cMin) / Convert.ToDouble(trackBar1.Maximum - trackBar1.Minimum) * Convert.ToDouble(trackBar1.Value - trackBar1.Minimum) + cMin;
 
             TransformEngine.Scale(_instance3D, sf / _scaleFactor, pictureBox1.Width / 2, pictureBox1.Height / 2, 0);
             _scaleFactor = sf;

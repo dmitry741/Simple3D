@@ -11,8 +11,7 @@ namespace Simple3D
     /// </summary>
     class Edge
     {
-        Point3D _point1 = null;
-        Point3D _point2 = null;
+        readonly Point3D _point1, _point2;
 
         public Edge(Point3D point1, Point3D point2)
         {

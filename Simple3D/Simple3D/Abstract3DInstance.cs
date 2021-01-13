@@ -18,7 +18,10 @@ namespace Simple3D
         /// </summary>
         /// <param name="z">Z координта векторного произведния.</param>
         /// <returns>Видимость грани.</returns>
-        protected bool PredicateVisible(double z) => z >= 0;
+        protected bool DetectVisibility(double z)
+        {
+            return z >= 0;
+        }
 
         /// <summary>
         /// Свойство возвращает список точек.
@@ -29,7 +32,7 @@ namespace Simple3D
         /// Метод возвращает список ребер для отрисовки.
         /// </summary>
         /// <returns>Коллекция ребер.</returns>
-        public  abstract IEnumerable<Edge> Render();
+        public abstract IEnumerable<Edge> Render();
 
         /// <summary>
         /// Метод возвращает список ребер для отрисовки с учетом перспективных преобразований.
@@ -40,7 +43,7 @@ namespace Simple3D
         public IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center)
         {
             List<Point3D> savedPoints = new List<Point3D>(_list);
-            _list = Array.ConvertAll(_list.ToArray(), x => ipt.Transform(x, center)).ToList();
+            _list = _list.Select(x => ipt.Transform(x, center)).ToList();
             IEnumerable<Edge> edges = Render();
             _list = savedPoints;
 
