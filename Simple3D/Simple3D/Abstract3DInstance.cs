@@ -11,7 +11,7 @@ namespace Simple3D
     /// </summary>
     abstract class Abstract3DInstance
     {
-        protected List<Point3D> _list = new List<Point3D>();
+        protected List<Point3D> _points= new List<Point3D>();
 
         /// <summary>
         /// Метод необходим для определения видимости грани.
@@ -26,7 +26,7 @@ namespace Simple3D
         /// <summary>
         /// Свойство возвращает список точек.
         /// </summary>
-        public List<Point3D> Points => _list;
+        public List<Point3D> Points => _points;
 
         /// <summary>
         /// Метод возвращает список ребер для отрисовки.
@@ -42,10 +42,10 @@ namespace Simple3D
         /// <returns>Коллекция ребер.</returns>
         public IEnumerable<Edge> Render(IPerspectiveTransform ipt, Point3D center)
         {
-            List<Point3D> savedPoints = new List<Point3D>(_list);
-            _list = _list.Select(x => ipt.Transform(x, center)).ToList();
+            List<Point3D> savedPoints = new List<Point3D>(_points);
+            _points = _points.Select(x => ipt.Transform(x, center)).ToList();
             IEnumerable<Edge> edges = Render();
-            _list = savedPoints;
+            _points = savedPoints;
 
             return edges;
         }

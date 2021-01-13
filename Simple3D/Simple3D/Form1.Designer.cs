@@ -133,7 +133,7 @@ namespace Simple3D
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "Simple 3D Sample";
+            this.Text = "Создание и преобразование 3D моделей";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

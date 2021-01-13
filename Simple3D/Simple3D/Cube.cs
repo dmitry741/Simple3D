@@ -18,15 +18,15 @@ namespace Simple3D
         {
             double s = Math.Sqrt(2) / 2;
 
-            _list.Add(new Point3D(0, s, 0.5));
-            _list.Add(new Point3D(s, 0, 0.5));
-            _list.Add(new Point3D(0, -s, 0.5));
-            _list.Add(new Point3D(-s, 0, 0.5));
+            _points.Add(new Point3D(0, s, 0.5));
+            _points.Add(new Point3D(s, 0, 0.5));
+            _points.Add(new Point3D(0, -s, 0.5));
+            _points.Add(new Point3D(-s, 0, 0.5));
 
-            _list.Add(new Point3D(0, s, -0.5));
-            _list.Add(new Point3D(s, 0, -0.5));
-            _list.Add(new Point3D(0, -s, -0.5));
-            _list.Add(new Point3D(-s, 0, -0.5));
+            _points.Add(new Point3D(0, s, -0.5));
+            _points.Add(new Point3D(s, 0, -0.5));
+            _points.Add(new Point3D(0, -s, -0.5));
+            _points.Add(new Point3D(-s, 0, -0.5));
 
             Name = "Куб";
         }
@@ -35,36 +35,36 @@ namespace Simple3D
         {
             List<Edge> edges = new List<Edge>
             {
-                new Edge(_list[0], _list[1]),
-                new Edge(_list[1], _list[2]),
-                new Edge(_list[2], _list[3]),
-                new Edge(_list[3], _list[0]),
+                new Edge(_points[0], _points[1]),
+                new Edge(_points[1], _points[2]),
+                new Edge(_points[2], _points[3]),
+                new Edge(_points[3], _points[0]),
 
-                new Edge(_list[4], _list[5]),
-                new Edge(_list[5], _list[6]),
-                new Edge(_list[6], _list[7]),
-                new Edge(_list[7], _list[4]),
+                new Edge(_points[4], _points[5]),
+                new Edge(_points[5], _points[6]),
+                new Edge(_points[6], _points[7]),
+                new Edge(_points[7], _points[4]),
 
-                new Edge(_list[0], _list[4]),
-                new Edge(_list[1], _list[5]),
-                new Edge(_list[2], _list[6]),
-                new Edge(_list[3], _list[7])
+                new Edge(_points[0], _points[4]),
+                new Edge(_points[1], _points[5]),
+                new Edge(_points[2], _points[6]),
+                new Edge(_points[3], _points[7])
             };
 
             Plane plane1, plane2;
 
             for (int i = 0; i < 4; i++)
             {
-                plane1 = new Plane(_list[i], _list[(i + 1) % 4], _list[(i + 2) % 4]);
-                plane2 = new Plane(_list[(i + 1) % 4], _list[i], _list[(i + 5) % 4 + 4]);
+                plane1 = new Plane(_points[i], _points[(i + 1) % 4], _points[(i + 2) % 4]);
+                plane2 = new Plane(_points[(i + 1) % 4], _points[i], _points[(i + 5) % 4 + 4]);
                 edges[i].Visible = DetectVisibility(plane1.Z) || DetectVisibility(plane2.Z);
 
-                plane1 = new Plane(_list[(i + 5) % 4 + 4], _list[(i + 4) % 4 + 4], _list[(i + 6) % 4 + 4]);
-                plane2 = new Plane(_list[(i + 4) % 4 + 4], _list[(i + 5) % 4 + 4], _list[i]);
+                plane1 = new Plane(_points[(i + 5) % 4 + 4], _points[(i + 4) % 4 + 4], _points[(i + 6) % 4 + 4]);
+                plane2 = new Plane(_points[(i + 4) % 4 + 4], _points[(i + 5) % 4 + 4], _points[i]);
                 edges[i + 4].Visible = DetectVisibility(plane1.Z) || DetectVisibility(plane2.Z);
 
-                plane1 = new Plane(_list[i], _list[i + 4], _list[(i + 5) % 8]);
-                plane2 = new Plane(_list[i + 4], _list[i], _list[(i + 7) % 8]);
+                plane1 = new Plane(_points[i], _points[i + 4], _points[(i + 5) % 8]);
+                plane2 = new Plane(_points[i + 4], _points[i], _points[(i + 7) % 8]);
                 edges[i + 8].Visible = DetectVisibility(plane1.Z) || DetectVisibility(plane2.Z);
             }
 
