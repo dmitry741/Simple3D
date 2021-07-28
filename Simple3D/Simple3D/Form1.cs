@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/* Урок "Трехмерное моделирование. Построение в пространстве."
+ * Все уроки на http://digitalmodels.ru
+ * 
+ */
+
 namespace Simple3D
 {
     public partial class frmMain : Form
